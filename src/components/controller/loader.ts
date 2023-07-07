@@ -1,11 +1,13 @@
 class Loader {
-    constructor(baseLink, options) {
+    baseLink:string;
+    options:{apiKey:string};
+    constructor(baseLink:string, options:{apiKey:string}) {
         this.baseLink = baseLink;
         this.options = options;
     }
 
     getResp(
-        { endpoint, options = {} },
+        { endpoint, options = {} }:{endpoint:string, options?:{sources?:string}},
         callback = () => {
             console.error('No callback for GET response');
         }
