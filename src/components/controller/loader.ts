@@ -7,7 +7,7 @@ class Loader {
     }
 
     getResp(
-        { endpoint, options = {} }:{endpoint:string, options?:{[sources:string]: number|string}},
+        { endpoint, options = {} }:{endpoint:string, options?:{sources?:string}},
         callback = () => {
             console.error('No callback for GET response');
         }
@@ -27,8 +27,8 @@ class Loader {
         return res;
     }
 
-    makeUrl(options:{[sources:string]: number|string}, endpoint:string) {
-        const urlOptions = { ...this.options, ...options };
+    makeUrl(options:{sources?:string}, endpoint:string) {
+        const urlOptions:{[key: string]: string} = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {
