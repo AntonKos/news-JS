@@ -7,14 +7,32 @@ export class AppView {
         this.sources = new Sources();
     }
 
-    drawNews(data) {
+    drawNews(data:{status:string,totalResults:number, articles:{
+        author:string;
+        content:string;
+        description:string;
+        publishedAt:string;
+        source:{id:string, name:string};
+        title:string;
+        url:string;
+        urlToImage:string; 
+      }}) {
    
         
         const values = data?.articles ? data?.articles : [];
         this.news.draw(values);
     }
 
-    drawSources(data) {
+    drawSources(data:{status:string, sources:{
+        author:string;
+        content:string;
+        description:string;
+        publishedAt:string;
+        source:{id:string, name:string};
+        title:string;
+        url:string;
+        urlToImage:string; 
+      }}) {
         const values = data?.sources ? data?.sources : [];
         this.sources.draw(values);
     }

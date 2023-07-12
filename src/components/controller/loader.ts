@@ -16,7 +16,7 @@ class Loader {
     }
 
     errorHandler(res:Response) {
-        // console.log(res);
+       
         
         if (!res.ok) {
             if (res.status === 401 || res.status === 404)
@@ -38,7 +38,25 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method:string, endpoint:string, callback:(data:Response)=>void, options = {}) {
+    load(method:string, endpoint:string, callback:(data:{status:string,totalResults?:number, articles?:{
+        author:string;
+        content:string;
+        description:string;
+        publishedAt:string;
+        source:{id:string, name:string};
+        title:string;
+        url:string;
+        urlToImage:string; 
+      }, sources?:{
+        category:string;
+        country:string;
+        description:string;
+        id:string;
+        language:string;
+        name:string;
+        url:string; 
+      }
+})=>void, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
