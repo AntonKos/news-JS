@@ -1,6 +1,6 @@
 import ISources from "./ISources";
 
-interface ICallbackSource {
+interface ICallback {
   (data:{status:string, sources:ISources[]}): void;
 }
-export default ICallbackSource;
+export default ICallback;
