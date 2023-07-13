@@ -1,38 +1,28 @@
 import News from './news/news';
 import Sources from './sources/sources';
+import IArticle from '../../templates/IArticles';
+import ISources from '../../templates/ISources';
 
 export class AppView {
+  news:{
+    draw:(data:any)=>void
+  };
+  sources:{
+    draw:(data:any)=>void
+  }
     constructor() {
         this.news = new News();
         this.sources = new Sources();
     }
 
-    drawNews(data:{status:string,totalResults:number, articles:{
-        author:string;
-        content:string;
-        description:string;
-        publishedAt:string;
-        source:{id:string, name:string};
-        title:string;
-        url:string;
-        urlToImage:string; 
-      }}) {
+    drawNews(data:{status:string,totalResults:number, articles:IArticle[]}) {
    
         
         const values = data?.articles ? data?.articles : [];
         this.news.draw(values);
     }
 
-    drawSources(data:{status:string, sources:{
-        author:string;
-        content:string;
-        description:string;
-        publishedAt:string;
-        source:{id:string, name:string};
-        title:string;
-        url:string;
-        urlToImage:string; 
-      }}) {
+    drawSources(data:{status:string, sources:ISources[]}) {
         const values = data?.sources ? data?.sources : [];
         this.sources.draw(values);
     }
