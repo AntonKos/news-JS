@@ -5,10 +5,10 @@ import ISources from '../../templates/ISources';
 
 export class AppView {
   news:{
-    draw:(data:any)=>void
+    draw:(data:IArticle[])=>void
   };
   sources:{
-    draw:(data:any)=>void
+    draw:(data:ISources[])=>void
   }
     constructor() {
         this.news = new News();

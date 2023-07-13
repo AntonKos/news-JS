@@ -1,7 +1,8 @@
 import AppLoader from './appLoader';
-
+import ISources from '../../templates/ISources';
+import ICallbackSource from '../../templates/ICallbackSources';
 class AppController extends AppLoader {
-    getSources(callback:()=>void) {
+    getSources(callback:ICallbackSource) {
         super.getResp(
             {
                 endpoint: 'sources',

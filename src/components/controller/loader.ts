@@ -1,3 +1,6 @@
+import IArticle from "../../templates/IArticles";
+import ISources from "../../templates/ISources";
+import ICallbackSource from "../../templates/ICallbackSources";
 class Loader {
     baseLink:string;
     options:{apiKey:string};
@@ -8,7 +11,7 @@ class Loader {
 
     getResp(
         { endpoint, options = {} }:{endpoint:string, options?:{sources?:string|null}},
-        callback = () => {
+        callback:ICallbackSource = () => {
             console.error('No callback for GET response');
         }
     ) {
@@ -38,25 +41,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method:string, endpoint:string, callback:(data:{status:string,totalResults?:number, articles?:{
-        author:string;
-        content:string;
-        description:string;
-        publishedAt:string;
-        source:{id:string, name:string};
-        title:string;
-        url:string;
-        urlToImage:string; 
-      }, sources?:{
-        category:string;
-        country:string;
-        description:string;
-        id:string;
-        language:string;
-        name:string;
-        url:string; 
-      }
-})=>void, options = {}) {
+    load(method:string, endpoint:string, callback:ICallbackSource, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
